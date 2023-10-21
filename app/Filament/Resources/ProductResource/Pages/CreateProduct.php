@@ -14,4 +14,10 @@ class CreateProduct extends CreateRecord
     {
         return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['name'] = $data['name'] . ' X';
+        return $data;
+    }
 }

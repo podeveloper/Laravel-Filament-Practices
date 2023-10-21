@@ -21,4 +21,16 @@ class EditProduct extends EditRecord
     {
         return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['name'] = str_replace(' X','',$data['name']);
+        return $data;
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['name'] = $data['name'] . ' X';
+        return $data;
+    }
 }
