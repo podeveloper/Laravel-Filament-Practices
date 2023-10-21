@@ -33,7 +33,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('price')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('price')->sortable()->searchable()->money('usd'),
             ])
             ->defaultSort('price','desc')
             ->filters([
