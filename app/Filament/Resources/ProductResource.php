@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 
 class ProductResource extends Resource
 {
@@ -23,7 +24,10 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('name')->required()
+                    ->live()
+                    ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rules(['numeric']),
             ]);
     }
@@ -33,6 +37,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('price')->sortable()->searchable()->money('usd'),
             ])
             ->defaultSort('price','desc')
