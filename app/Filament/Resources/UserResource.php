@@ -34,7 +34,8 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('id')->sortable()->label('ID'),
                 Tables\Columns\TextColumn::make('name')->sortable(),
                 Tables\Columns\TextColumn::make('email')->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->sortable()
+                ->date('Y-m-d'),
             ])
             ->defaultSort('id','desc')
             ->filters([
