@@ -29,6 +29,7 @@ class ProductResource extends Resource
                     ->afterStateUpdated(fn (Forms\Set $set, ?string $state) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rules(['numeric']),
+                Forms\Components\FileUpload::make('image'),
             ]);
     }
 
@@ -36,6 +37,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image')->width(50)->height(50), // Do not forget to set APP_URL
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('price')->sortable()->searchable()->money('usd'),
