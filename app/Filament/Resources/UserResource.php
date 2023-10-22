@@ -65,4 +65,14 @@ class UserResource extends Resource
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
+
+    public static function canDelete(Model $record) : bool
+    {
+        return false;
+    }
+
+    public static function canDeleteAny() : bool
+    {
+        return false;
+    }
 }
