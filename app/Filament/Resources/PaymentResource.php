@@ -31,7 +31,7 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')->label('Payment Time'),
+                Tables\Columns\TextColumn::make('created_at')->label('Payment Time')->sortable(),
                 Tables\Columns\TextColumn::make('product.name')->label('Product Name'),
                 Tables\Columns\TextColumn::make('user.name')->label('User Name'),
                 Tables\Columns\TextColumn::make('user.email')->label('User Email'),
@@ -40,6 +40,7 @@ class PaymentResource extends Resource
                 Tables\Columns\TextColumn::make('taxes')->money('usd'),
                 Tables\Columns\TextColumn::make('total')->money('usd'),
             ])
+            ->defaultSort('created_at','desc')
             ->filters([
                 //
             ])
