@@ -23,8 +23,12 @@ class VoucherResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('code'),
-                Forms\Components\TextInput::make('discount_percent')->label('Discount (%)'),
+                Forms\Components\TextInput::make('code')->required()->unique(),
+                Forms\Components\TextInput::make('discount_percent')
+                    ->numeric()
+                    ->default(10)
+                    ->extraInputAttributes(['min' => 1, 'max' => 100, 'step' => 1])
+                    ->label('Discount (%)'),
                 Forms\Components\Select::make('product_id')->relationship('product', 'name'),
             ]);
     }
