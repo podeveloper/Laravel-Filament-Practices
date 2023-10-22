@@ -117,4 +117,9 @@ class UserResource extends Resource
     {
         return ['name','email']; // Searchable Attributes
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return self::getModel()::count();
+    }
 }
