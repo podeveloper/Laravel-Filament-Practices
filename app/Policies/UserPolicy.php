@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Product;
+
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ProductPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,18 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_product');
+        return $user->can('view_any_user');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function view(User $user, Product $product): bool
+    public function view(User $user): bool
     {
-        return $user->can('view_product');
+        return $user->can('view_user');
     }
 
     /**
@@ -41,31 +40,29 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_product');
+        return $user->can('create_user');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function update(User $user, Product $product): bool
+    public function update(User $user): bool
     {
-        return $user->can('update_product');
+        return $user->can('update_user');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function delete(User $user, Product $product): bool
+    public function delete(User $user): bool
     {
-        return $user->can('delete_product');
+        return $user->can('delete_user');
     }
 
     /**
@@ -76,19 +73,18 @@ class ProductPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_product');
+        return $user->can('delete_any_user');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function forceDelete(User $user, Product $product): bool
+    public function forceDelete(User $user): bool
     {
-        return $user->can('force_delete_product');
+        return $user->can('force_delete_user');
     }
 
     /**
@@ -99,19 +95,18 @@ class ProductPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_product');
+        return $user->can('force_delete_any_user');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function restore(User $user, Product $product): bool
+    public function restore(User $user): bool
     {
-        return $user->can('restore_product');
+        return $user->can('restore_user');
     }
 
     /**
@@ -122,19 +117,18 @@ class ProductPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_product');
+        return $user->can('restore_any_user');
     }
 
     /**
-     * Determine whether the user can replicate.
+     * Determine whether the user can bulk restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Product  $product
      * @return bool
      */
-    public function replicate(User $user, Product $product): bool
+    public function replicate(User $user): bool
     {
-        return $user->can('replicate_product');
+        return $user->can('replicate_user');
     }
 
     /**
@@ -145,7 +139,6 @@ class ProductPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_product');
+        return $user->can('reorder_user');
     }
-
 }
