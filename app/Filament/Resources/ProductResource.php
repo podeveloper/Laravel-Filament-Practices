@@ -33,6 +33,9 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('slug')->required(),
                 Forms\Components\TextInput::make('price')->required()->rules(['numeric']),
                 Forms\Components\FileUpload::make('image'),
+                Forms\Components\Select::make('tags')
+                    ->multiple()
+                    ->relationship('tags', 'name'),
             ]);
     }
 
