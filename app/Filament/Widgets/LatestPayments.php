@@ -9,6 +9,8 @@ use Filament\Widgets\TableWidget as BaseWidget;
 
 class LatestPayments extends BaseWidget
 {
+    protected static ?int $sort = 1;
+
     public function table(Table $table): Table
     {
         return $table
